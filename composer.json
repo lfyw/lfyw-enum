@@ -1,0 +1,17 @@
+{
+    "name": "lfyw/lfyw-enum",
+    "description": "A php8.1 enum helper.",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "lfyw",
+            "email": "1559897062@qq.com"
+        }
+    ],
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "Lfyw\\LfywEnum\\": "src"
+        }
+    }
+}

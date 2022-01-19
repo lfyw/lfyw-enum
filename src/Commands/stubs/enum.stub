@@ -1,0 +1,11 @@
+<?php
+
+namespace DummyNamespace;
+
+use Lfyw\LfywEnum\Enumable;
+use Lfyw\LfywEnum\HasEnum;
+
+enum DummyClass implements Enumable
+{
+    use HasEnum;
+}
