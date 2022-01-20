@@ -2,10 +2,10 @@
 
 namespace Lfyw\LfywEnum;
 
-use Lfyw\LfywEnum\Rules\EnumKey;
-use Lfyw\LfywEnum\Rules\EnumValue;
 use Illuminate\Support\ServiceProvider;
 use Lfyw\LfywEnum\Commands\MakeEnumCommand;
+use Lfyw\LfywEnum\Rules\EnumKey;
+use Lfyw\LfywEnum\Rules\EnumValue;
 
 class EnumServiceProvider extends ServiceProvider
 {
@@ -21,14 +21,14 @@ class EnumServiceProvider extends ServiceProvider
     }
 
     /**
-     * Boot the custom commands
+     * Boot the custom commands.
      *
      * @return void
      */
     private function bootCommands()
     {
         $this->publishes([
-            __DIR__.'/Commands/stubs' => $this->app->basePath('stubs')
+            __DIR__.'/Commands/stubs' => $this->app->basePath('stubs'),
         ], 'stubs');
 
         if ($this->app->runningInConsole()) {
@@ -39,7 +39,7 @@ class EnumServiceProvider extends ServiceProvider
     }
 
     /**
-     * Boot the custom validators
+     * Boot the custom validators.
      *
      * @return void
      */
@@ -56,11 +56,11 @@ class EnumServiceProvider extends ServiceProvider
 
             $strict = $parameters[1] ?? null;
 
-            if (! $strict) {
+            if (!$strict) {
                 return (new EnumValue($enum))->passes($attribute, $value);
             }
 
-            $strict = !! json_decode(strtolower($strict));
+            $strict = (bool) json_decode(strtolower($strict));
 
             return (new EnumValue($enum, $strict))->passes($attribute, $value);
         });

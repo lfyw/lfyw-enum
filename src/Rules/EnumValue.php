@@ -11,16 +11,16 @@ class EnumValue implements Rule
     public function __construct(
         protected $enumClass,
         protected $strict = false,
-    )
-    {
+    ) {
         throw_unless(class_exists($this->enumClass), new \InvalidArgumentException("枚举类 {$this->enumClass} 不存在."));
     }
 
     /**
      * 判断是否通过验证规则。
      *
-     * @param  string  $attribute
-     * @param  mixed  $value
+     * @param string $attribute
+     * @param mixed  $value
+     *
      * @return bool
      */
     public function passes($attribute, $value)
