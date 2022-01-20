@@ -2,6 +2,7 @@
 
 <p align="center"> A php8.1 enum helper..</p>
 
+![StyleCI build status](https://github.styleci.io/repos/449704539/shield) 
 
 ## Installing
 
