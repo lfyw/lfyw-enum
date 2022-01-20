@@ -1,6 +1,6 @@
 <?php
 
-namespace Lfyw\Enum\Commands;
+namespace Lfyw\LfywEnum\Commands;
 
 use Illuminate\Console\GeneratorCommand;
 

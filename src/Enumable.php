@@ -10,13 +10,13 @@ interface Enumable
 
     public static function getDescriptions():array;
 
+    public static function hasValue($value):bool;
+
+    public static function hasName(string $key):bool;
+
     public function getDescription():string;
 
     public function getName();
 
     public function getValue();
-
-    public function hasValue($value):bool;
-
-    public function hasName(string $key):bool;
 }

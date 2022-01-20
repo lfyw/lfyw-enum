@@ -1,13 +1,14 @@
 <?php
 
-namespace Lfyw\Rules;
+namespace Lfyw\LfywEnum\Rules;
 
 use Illuminate\Contracts\Validation\Rule;
 
 class EnumValue implements Rule
 {
+    protected string $rule = 'enum_value';
+
     public function __construct(
-        protected string $rule = 'enum_value',
         protected $enumClass,
         protected $strict = false,
     )

@@ -1,13 +1,14 @@
 <?php
 
-namespace Lfyw\Rules;
+namespace Lfyw\LfywEnum\Rules;
 
 use Illuminate\Contracts\Validation\Rule;
 
-class EnumKey implements Rule
+class EnumName implements Rule
 {
+    protected string $rule = 'enum_name';
+
     public function __construct(
-        protected string $rule = 'enum_name',
         protected $enumClass
     )
     {
@@ -23,7 +24,7 @@ class EnumKey implements Rule
      */
     public function passes($attribute, $value)
     {
-        return $this->enumClass::hasKey($value);
+        return $this->enumClass::hasName($value);
     }
 
     /**

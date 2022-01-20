@@ -13,5 +13,12 @@
         "psr-4": {
             "Lfyw\\LfywEnum\\": "src"
         }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Lfyw\\LfywEnum\\EnumServiceProvider"
+            ]
+        }
     }
 }

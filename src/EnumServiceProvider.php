@@ -1,11 +1,11 @@
 <?php
 
-namespace BenSampo\Enum;
+namespace Lfyw\LfywEnum;
 
 use Lfyw\LfywEnum\Rules\EnumKey;
 use Lfyw\LfywEnum\Rules\EnumValue;
 use Illuminate\Support\ServiceProvider;
-use BenSampo\Enum\Commands\MakeEnumCommand;
+use Lfyw\LfywEnum\Commands\MakeEnumCommand;
 
 class EnumServiceProvider extends ServiceProvider
 {
