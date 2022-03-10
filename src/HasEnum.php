@@ -3,7 +3,6 @@
 namespace Lfyw\LfywEnum;
 
 use Lfyw\LfywEnum\Exceptions\InvalidEnumTypeException;
-use Lfyw\LfywEnum\Exceptions\NullDescriptionException;
 
 trait HasEnum
 {
