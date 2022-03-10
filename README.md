@@ -85,10 +85,14 @@ enum UserType:string implements Enumable
 
 根据值获取注释
 
-```php
-UserType::getDescriptionByValue(UserType::USER->value);
-```
 
+#### UserType::getDescriptionByName(string $name):string
+
+根据名称获取注释
+
+#### UserType::USER()
+
+调用`UserType::User->value`,如果不是回退枚举返回`null`
 
 #### UserType::hasValue($value, bool $strict = false)
 

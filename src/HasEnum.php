@@ -19,9 +19,7 @@ trait HasEnum
 
     public static function getDescriptions(): array
     {
-        throw_unless(static::getValues(), new InvalidEnumTypeException('The description is not defined or the enum is not backed.'));
-
-        return array_combine(static::getNames(), static::getValues());
+        return static::isBacked() ? array_combine(static::getNames(), static::getValues()) : [];
     }
 
     public static function hasValue($value, bool $strict = false): bool
@@ -38,20 +36,31 @@ trait HasEnum
 
     public static function getDescriptionByValue($value): string
     {
-        return static::tryFrom($value)?->getDescription();
+        return static::isBacked() ? (static::tryFrom($value)?->getDescription() ?: '') : '';
     }
 
-    public static function getDescriptionByName($name): string
+    public static function getDescriptionByName(string $name): string
     {
-        return '';
-//        return (static::{$name})?->getDescription();
+        return static::getDescriptions()[$name] ?? '';
+    }
+
+    public static function getValueByName(string $name)
+    {
+        if (!static::isBacked()){
+            return null;
+        }
+
+        $array = [];
+        $cases = static::cases();
+        foreach ($cases as $case){
+            $array[$case->name] = $case->value;
+        }
+        return $array[$name] ?? '';
     }
 
     public function getDescription(): string
     {
-        $descriptions = static::getDescriptions();
-
-        return $descriptions[$this->name] ?? '';
+        return  static::getDescriptions()[$this->name] ?? '';
     }
 
     public function getName(): string|int
@@ -59,10 +68,25 @@ trait HasEnum
         return $this->name;
     }
 
-    public function getValue(): string|int
+    public function getValue()
     {
-        throw_unless(static::getValues(), new InvalidEnumTypeException('Invalid enum type.'));
+        return static::getValues() ? $this->value : null;
+    }
 
-        return $this->value;
+    private static function isBacked():bool
+    {
+        return (bool)static::getValues();
+    }
+
+    /**
+     * Handle dynamic static method calls into the model.
+     *
+     * @param  string  $method
+     * @param  array  $parameters
+     * @return mixed
+     */
+    public static function __callStatic($method, $parameters)
+    {
+        return static::hasName($method) ? static ::getValueByName($method) : null;
     }
 }
