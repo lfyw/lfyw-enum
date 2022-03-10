@@ -75,12 +75,21 @@ enum UserType:string implements Enumable
     public static function getDescriptions():array
     {
         return [
-            UserType::Admin => 'super admin',
-            UserType::Consumer => 'super consumer'
+            UserType::Admin->name => 'super admin',
+            UserType::Consumer->name => 'super consumer'
         ];
     }
 }
 ```
+#### UserType::getDescriptionByValue($value):string
+
+根据值获取注释
+
+```php
+UserType::getDescriptionByValue(UserType::USER->value);
+```
+
+
 #### UserType::hasValue($value, bool $strict = false)
 
  检查枚举中是否包含某个值。

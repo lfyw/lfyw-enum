@@ -36,13 +36,22 @@ trait HasEnum
         return in_array($key, static::getNames(), true);
     }
 
+    public static function getDescriptionByValue($value): string
+    {
+        return static::tryFrom($value)?->getDescription();
+    }
+
+    public static function getDescriptionByName($name): string
+    {
+        return '';
+//        return (static::{$name})?->getDescription();
+    }
+
     public function getDescription(): string
     {
         $descriptions = static::getDescriptions();
 
-        throw_unless(isset($descriptions[$this->name]), new NullDescriptionException('The description is not defined.'));
-
-        return $descriptions[$this->name];
+        return $descriptions[$this->name] ?? '';
     }
 
     public function getName(): string|int

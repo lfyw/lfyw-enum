@@ -14,6 +14,10 @@ interface Enumable
 
     public static function hasName(string $key): bool;
 
+    public static function getDescriptionByName($name): string;
+
+    public static function getDescriptionByValue($value): string;
+
     public function getDescription(): string;
 
     public function getName();
