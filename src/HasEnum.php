@@ -2,9 +2,6 @@
 
 namespace Lfyw\LfywEnum;
 
-use Lfyw\LfywEnum\Exceptions\InvalidEnumTypeException;
-use Lfyw\LfywEnum\Exceptions\NullDescriptionException;
-
 trait HasEnum
 {
     public static function getNames(): array
@@ -46,15 +43,16 @@ trait HasEnum
 
     public static function getValueByName(string $name)
     {
-        if (!static::isBacked()){
+        if (!static::isBacked()) {
             return null;
         }
 
         $array = [];
         $cases = static::cases();
-        foreach ($cases as $case){
+        foreach ($cases as $case) {
             $array[$case->name] = $case->value;
         }
+
         return $array[$name] ?? '';
     }
 
@@ -73,20 +71,21 @@ trait HasEnum
         return static::getValues() ? $this->value : null;
     }
 
-    private static function isBacked():bool
+    private static function isBacked(): bool
     {
-        return (bool)static::getValues();
+        return (bool) static::getValues();
     }
 
     /**
      * Handle dynamic static method calls into the model.
      *
-     * @param  string  $method
-     * @param  array  $parameters
+     * @param string $method
+     * @param array  $parameters
+     *
      * @return mixed
      */
     public static function __callStatic($method, $parameters)
     {
-        return static::hasName($method) ? static ::getValueByName($method) : null;
+        return static::hasName($method) ? static::getValueByName($method) : null;
     }
 }
