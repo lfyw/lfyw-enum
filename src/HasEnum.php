@@ -26,7 +26,7 @@ trait HasEnum
         return $strict ? in_array($value, $values, $strict) : in_array((string) $value, array_map('strval', $values), true);
     }
 
-    public static function hasName(string $key): bool
+    public static function hasName(string|null $key): bool
     {
         return in_array($key, static::getNames(), true);
     }
@@ -36,12 +36,12 @@ trait HasEnum
         return static::isBacked() ? (static::tryFrom($value)?->getDescription() ?: '') : '';
     }
 
-    public static function getDescriptionByName(string $name): string
+    public static function getDescriptionByName(string|null $name): string
     {
         return static::getDescriptions()[$name] ?? '';
     }
 
-    public static function getValueByName(string $name)
+    public static function getValueByName(string|null $name): string|null
     {
         if (!static::isBacked()) {
             return null;
@@ -66,7 +66,7 @@ trait HasEnum
         return $this->name;
     }
 
-    public function getValue()
+    public function getValue(): mixed
     {
         return static::getValues() ? $this->value : null;
     }
